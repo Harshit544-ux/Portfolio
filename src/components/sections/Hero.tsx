@@ -250,7 +250,15 @@ export function Hero() {
         </motion.div>
 
         {/* ── Right — profile card ── */}
-        <div className="relative flex-shrink-0 lg:w-[360px]">
+        <div
+          style={{
+            position: 'relative',
+            flexShrink: 0,
+            width: '100%',
+            maxWidth: '380px',
+            alignSelf: 'center',
+          }}
+        >
           <ProfileCard />
         </div>
       </div>

@@ -178,6 +178,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 3rem;
   }
 }
 
@@ -225,7 +226,7 @@ body {
   .tech-bento-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1280px) {
-  .tech-bento-grid { grid-template-columns: repeat(4, 1fr); }
+  .tech-bento-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ─── Pulse glow ─────────────────────────────────────────────────────────── */

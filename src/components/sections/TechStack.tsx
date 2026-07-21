@@ -6,6 +6,7 @@ const categories = [
   {
     id: 'frontend',
     label: 'Frontend',
+    icon: '🎨',
     accent: '#22d3ee',
     accentBg: 'rgba(34,211,238,0.08)',
     accentBorder: 'rgba(34,211,238,0.22)',
@@ -13,7 +14,7 @@ const categories = [
       { name: 'React',         icon: '⚛️' },
       { name: 'Next.js',       icon: '▲' },
       { name: 'TypeScript',    icon: 'TS' },
-      { name: 'Tailwind',      icon: '🌊' },
+      { name: 'Tailwind CSS',  icon: '🌊' },
       { name: 'React Native',  icon: '📱' },
       { name: 'Framer Motion', icon: '✦' },
     ],
@@ -21,6 +22,7 @@ const categories = [
   {
     id: 'backend',
     label: 'Backend',
+    icon: '⚙️',
     accent: '#a78bfa',
     accentBg: 'rgba(167,139,250,0.08)',
     accentBorder: 'rgba(167,139,250,0.22)',
@@ -36,21 +38,23 @@ const categories = [
   {
     id: 'ai',
     label: 'AI / LLM',
+    icon: '🤖',
     accent: '#22d3ee',
     accentBg: 'rgba(34,211,238,0.08)',
     accentBorder: 'rgba(34,211,238,0.22)',
     techs: [
-      { name: 'LangChain',  icon: '🔗' },
-      { name: 'OpenAI',     icon: '✦' },
-      { name: 'RAG',        icon: '📚' },
-      { name: 'LangGraph',  icon: '🕸️' },
-      { name: 'Qdrant',     icon: '🎯' },
-      { name: 'HuggingFace',icon: '🤗' },
+      { name: 'LangChain',   icon: '🔗' },
+      { name: 'OpenAI',      icon: '✦' },
+      { name: 'RAG',         icon: '📚' },
+      { name: 'LangGraph',   icon: '🕸️' },
+      { name: 'Qdrant',      icon: '🎯' },
+      { name: 'HuggingFace', icon: '🤗' },
     ],
   },
   {
     id: 'cloud',
     label: 'Cloud & DevOps',
+    icon: '☁️',
     accent: '#a78bfa',
     accentBg: 'rgba(167,139,250,0.08)',
     accentBorder: 'rgba(167,139,250,0.22)',
@@ -88,12 +92,11 @@ function Marquee({ reverse = false }: { reverse?: boolean }) {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.4rem 1rem',
+              padding: '0.35rem 0.9rem',
               borderRadius: '99px',
               background: 'rgba(255,255,255,0.04)',
               border: '1px solid rgba(255,255,255,0.08)',
-              fontSize: '0.8rem',
+              fontSize: '0.78rem',
               color: '#94a3b8',
               whiteSpace: 'nowrap',
               fontFamily: 'var(--font-mono)',
@@ -126,12 +129,15 @@ function CategoryCard({
         background: 'rgba(255,255,255,0.035)',
         border: '1px solid rgba(255,255,255,0.09)',
         borderRadius: '1.5rem',
-        padding: '1.75rem',
+        padding: '1.5rem',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        transition: 'box-shadow 0.3s',
+        transition: 'box-shadow 0.3s, border-color 0.3s',
         position: 'relative',
         overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.25rem',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.boxShadow = `0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px ${cat.accentBorder}`
@@ -147,93 +153,109 @@ function CategoryCard({
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '-40px',
-          right: '-40px',
-          width: '130px',
-          height: '130px',
+          top: '-50px',
+          right: '-50px',
+          width: '150px',
+          height: '150px',
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${cat.accentBg.replace('0.08', '0.25')} 0%, transparent 70%)`,
-          filter: 'blur(20px)',
+          background: `radial-gradient(circle, ${cat.accentBg.replace('0.08', '0.3')} 0%, transparent 70%)`,
+          filter: 'blur(25px)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-        <span
+      {/* Header: icon + label */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div
           style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            padding: '0.3rem 0.85rem',
-            borderRadius: '99px',
+            width: '2.25rem',
+            height: '2.25rem',
+            borderRadius: '0.75rem',
             background: cat.accentBg,
             border: `1px solid ${cat.accentBorder}`,
-            color: cat.accent,
-            fontSize: '0.72rem',
-            fontWeight: 600,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--font-mono)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '1rem',
+            flexShrink: 0,
           }}
         >
-          {cat.label}
-        </span>
+          {cat.icon}
+        </div>
+        <div>
+          <p
+            style={{
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              color: '#f0f4ff',
+              fontFamily: 'var(--font-display)',
+              lineHeight: 1.2,
+            }}
+          >
+            {cat.label}
+          </p>
+          <p style={{ fontSize: '0.7rem', color: cat.accent, fontFamily: 'var(--font-mono)', letterSpacing: '0.05em' }}>
+            {cat.techs.length} tools
+          </p>
+        </div>
       </div>
 
-      {/* Tech list */}
+      {/* ── Tech pills — 3-col grid for balanced rows ── */}
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.45rem',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '0.5rem',
         }}
       >
         {cat.techs.map((tech, i) => (
-          <motion.div
+          <motion.span
             key={tech.name}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: index * 0.08 + i * 0.05 }}
-            whileHover={{ scale: 1.04 }}
+            transition={{ duration: 0.25, delay: index * 0.07 + i * 0.04 }}
+            whileHover={{ scale: 1.06, y: -2 }}
             style={{
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.6rem',
-              padding: '0.5rem 0.75rem',
+              justifyContent: 'center',
+              gap: '0.35rem',
+              padding: '0.4rem 0.6rem',
               borderRadius: '0.625rem',
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              fontSize: '0.78rem',
+              fontWeight: 500,
+              color: '#cbd5e1',
               cursor: 'default',
-              transition: 'background 0.2s, border-color 0.2s',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              transition: 'background 0.2s, border-color 0.2s, color 0.2s',
+              userSelect: 'none',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = cat.accentBg
               e.currentTarget.style.borderColor = cat.accentBorder
+              e.currentTarget.style.color = cat.accent
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
+              e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+              e.currentTarget.style.color = '#cbd5e1'
             }}
           >
-            <span style={{ fontSize: '0.88rem', lineHeight: 1, flexShrink: 0 }}>{tech.icon}</span>
-            <span
-              style={{
-                fontSize: '0.82rem',
-                fontWeight: 500,
-                color: '#cbd5e1',
-              }}
-            >
-              {tech.name}
-            </span>
-          </motion.div>
+            <span style={{ fontSize: '0.82rem', lineHeight: 1 }}>{tech.icon}</span>
+            {tech.name}
+          </motion.span>
         ))}
       </div>
     </motion.div>
   )
 }
 
-/* ─── Stats bar ─────────────────────────────────────────────────────────── */
+/* ─── Stats ─────────────────────────────────────────────────────────────── */
 const stats = [
   { value: '20+', label: 'Technologies' },
   { value: '4',   label: 'Domains' },
@@ -241,7 +263,7 @@ const stats = [
   { value: '∞',   label: 'Curiosity' },
 ]
 
-/* ─── Main Component ─────────────────────────────────────────────────────── */
+/* ─── Main ───────────────────────────────────────────────────────────────── */
 export function TechStack() {
   return (
     <section
@@ -302,27 +324,20 @@ export function TechStack() {
           </span>
         </h2>
 
-        {/* Stats row */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.75rem',
-            marginTop: '1.5rem',
-          }}
-        >
+        {/* Stats pills */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginTop: '1.25rem' }}>
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
               style={{
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
+                gap: '0.4rem',
+                padding: '0.4rem 0.9rem',
                 borderRadius: '99px',
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.09)',
@@ -331,7 +346,7 @@ export function TechStack() {
               <span
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1rem',
+                  fontSize: '0.95rem',
                   fontWeight: 700,
                   background: 'linear-gradient(135deg, #22d3ee, #a78bfa)',
                   WebkitBackgroundClip: 'text',
@@ -341,19 +356,14 @@ export function TechStack() {
               >
                 {s.value}
               </span>
-              <span style={{ fontSize: '0.8rem', color: '#64748b' }}>{s.label}</span>
+              <span style={{ fontSize: '0.78rem', color: '#64748b' }}>{s.label}</span>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
-      {/* ── Bento grid ── */}
-      <div
-        className="tech-bento-grid"
-        style={{
-          marginBottom: '1.75rem',
-        }}
-      >
+      {/* ── 2×2 card grid ── */}
+      <div className="tech-bento-grid" style={{ marginBottom: '1.75rem' }}>
         {categories.map((cat, i) => (
           <CategoryCard key={cat.id} cat={cat} index={i} />
         ))}
@@ -370,21 +380,21 @@ export function TechStack() {
           overflow: 'hidden',
           border: '1px solid rgba(255,255,255,0.07)',
           background: 'rgba(255,255,255,0.02)',
-          padding: '1.5rem 0',
+          padding: '1.25rem 0',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.75rem',
+          gap: '0.65rem',
         }}
       >
         <p
           style={{
             textAlign: 'center',
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.65rem',
+            fontSize: '0.62rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             color: '#334155',
-            marginBottom: '0.5rem',
+            marginBottom: '0.25rem',
           }}
         >
           Full toolkit
