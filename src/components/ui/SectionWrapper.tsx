@@ -17,8 +17,8 @@ export function SectionWrapper({ id, eyebrow, title, subtitle, children }: Secti
       style={{
         maxWidth: '80rem',          // max-w-7xl = 1280px
         margin: '0 auto',
-        paddingTop: '5rem',         // py-20
-        paddingBottom: '5rem',
+        paddingTop: 'clamp(3rem, 5vw, 4.5rem)',
+        paddingBottom: 'clamp(3rem, 5vw, 4.5rem)',
         paddingLeft: 'clamp(1.25rem, 4vw, 3rem)',   // responsive px
         paddingRight: 'clamp(1.25rem, 4vw, 3rem)',
         width: '100%',
@@ -29,7 +29,7 @@ export function SectionWrapper({ id, eyebrow, title, subtitle, children }: Secti
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.55 }}
-        style={{ marginBottom: '3rem' }}
+        style={{ marginBottom: '2rem' }}
       >
         <p
           style={{

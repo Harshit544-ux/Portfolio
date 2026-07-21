@@ -107,7 +107,7 @@ export function Hero() {
         alignItems: 'center',
         minHeight: 'calc(100svh - 72px)',
         width: '100%',
-        padding: 'clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem)',
+        padding: 'clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem)',
         overflow: 'hidden',
       }}
     >
