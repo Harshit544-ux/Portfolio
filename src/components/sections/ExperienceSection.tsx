@@ -36,6 +36,25 @@ const experiences = [
   },
 ]
 
+/* ==========================================================================
+   ExperienceSection Component
+   - UI / LAYOUT IMPROVEMENTS:
+     1. Generous Internal Padding:
+        - `p-6 sm:p-8` provides 24px padding on mobile and 32px on desktop so date badges and text never touch borders.
+     2. Card Vertical Spacing:
+        - `gap-7 sm:gap-8` provides 28px–32px clean vertical gap between consecutive timeline cards.
+     3. Left Timeline Breathing Room:
+        - Increased left container padding to `pl-10 sm:pl-12` (40px–48px) so timeline dots (`left: -41px`) have ~20px clear breathing space before card borders.
+     4. Content Element Spacing Stack:
+        - Date Badges → Title: `mt-3.5` (14px)
+        - Title → Company: `mt-1.5` (6px)
+        - Company → Description: `mt-5` (20px)
+        - Description → Tech Chips: `mt-6` (24px)
+     5. Comfortable Line-Height & Max-Width:
+        - Description uses `leading-[1.75]` with `max-w-3xl` (~768px) to prevent unnatural single-line text stretching on wide displays.
+     6. Premium Border Radius:
+        - Increased card border radius to `1.75rem` (28px) for a modern, sleek developer card silhouette.
+   ========================================================================== */
 export function ExperienceSection() {
   return (
     <SectionWrapper
@@ -43,11 +62,10 @@ export function ExperienceSection() {
       eyebrow="Experience"
       title="A trajectory shaped by impact, ownership, and growth."
     >
-      <div className="relative pl-8">
-        {/* Timeline vertical line */}
-        <div className="timeline-line" style={{ left: '3px' }} />
-
-        <div className="space-y-8">
+      {/* ── Timeline Container with Left Breathing Room ── */}
+      <div className="relative pl-10 sm:pl-12">
+        {/* ── Timeline Cards Stack (28px–32px gap) ── */}
+        <div className="flex flex-col gap-7 sm:gap-8">
           {experiences.map((item, i) => (
             <motion.article
               key={item.company}
@@ -57,7 +75,7 @@ export function ExperienceSection() {
               transition={{ duration: 0.6, delay: i * 0.12 }}
               className="relative"
             >
-              {/* Timeline dot */}
+              {/* Timeline Indicator Dot — Offset cleanly from card border */}
               <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
@@ -65,8 +83,8 @@ export function ExperienceSection() {
                 transition={{ type: 'spring', duration: 0.5, delay: i * 0.12 + 0.15 }}
                 className="absolute"
                 style={{
-                  left: '-29px',
-                  top: '1.5rem',
+                  left: '-41px',
+                  top: '2rem',
                   width: '14px',
                   height: '14px',
                   borderRadius: '50%',
@@ -76,49 +94,54 @@ export function ExperienceSection() {
                 }}
               />
 
-              {/* Card */}
+              {/* Experience Card Container (24px mobile, 32px desktop padding, 28px border-radius) */}
               <div
-                className="p-6 sm:p-8"
+                className="p-6 sm:p-8 transition-all duration-300 hover:border-white/20"
                 style={{
                   background: item.cardBg,
                   border: `1px solid ${item.cardBorder}`,
                   backdropFilter: 'blur(16px)',
                   WebkitBackdropFilter: 'blur(16px)',
-                  borderRadius: '1.5rem',
+                  borderRadius: '1.75rem',
                 }}
               >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    {/* Period + type badges */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span
-                        className="rounded-full px-3 py-1 font-mono text-[11px] font-medium"
-                        style={{ background: item.tagBg, border: `1px solid ${item.tagBorder}`, color: item.tagColor }}
-                      >
-                        {item.period}
-                      </span>
-                      <span
-                        className="rounded-full px-3 py-1 font-mono text-[11px] font-medium text-slate-500"
-                        style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                      >
-                        {item.type}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-3 font-display text-xl font-semibold text-white sm:text-2xl">
-                      {item.role}
-                    </h3>
-                    <p className="mt-1 text-base text-slate-400">{item.company}</p>
-                  </div>
+                {/* 1. Date & Employment Type Badges (Top clearance via card padding) */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span
+                    className="rounded-full px-3.5 py-1.5 font-mono text-[11px] font-medium tracking-wide"
+                    style={{ background: item.tagBg, border: `1px solid ${item.tagBorder}`, color: item.tagColor }}
+                  >
+                    {item.period}
+                  </span>
+                  <span
+                    className="rounded-full px-3 py-1 font-mono text-[11px] font-medium text-slate-400"
+                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  >
+                    {item.type}
+                  </span>
                 </div>
 
-                <p className="mt-5 text-sm leading-8 text-slate-400 sm:text-base">{item.description}</p>
+                {/* 2. Role Title (14px gap from Date badge) */}
+                <h3 className="mt-3.5 font-display text-xl font-semibold text-white sm:text-2xl tracking-tight">
+                  {item.role}
+                </h3>
 
-                <div className="mt-5 flex flex-wrap gap-2">
+                {/* 3. Company Name (6px gap from Title) */}
+                <p className="mt-1.5 text-base font-medium text-slate-400">
+                  {item.company}
+                </p>
+
+                {/* 4. Role Description (20px gap from Company, 1.75 line-height, max 768px width) */}
+                <p className="mt-5 text-sm sm:text-base leading-[1.75] text-slate-300/90 max-w-3xl">
+                  {item.description}
+                </p>
+
+                {/* 5. Tech Stack Chips (24px gap from Description) */}
+                <div className="mt-6 flex flex-wrap gap-2 sm:gap-2.5">
                   {item.highlights.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full px-3 py-1 text-xs text-slate-500"
+                      className="rounded-full px-3.5 py-1.5 font-mono text-xs text-slate-400 transition-colors duration-200 hover:text-slate-200"
                       style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
                     >
                       {tag}
@@ -133,3 +156,4 @@ export function ExperienceSection() {
     </SectionWrapper>
   )
 }
+
