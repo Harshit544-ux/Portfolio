@@ -117,7 +117,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         aria-hidden="true"
       />
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-7 pt-6">
         {/* Top row: tag + links */}
         <div className="flex items-start justify-between gap-3">
           <span
@@ -153,15 +153,15 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         </div>
 
         {/* Title */}
-        <h3 className="mt-5 font-display text-lg font-semibold text-slate-100 leading-snug group-hover:text-white transition-colors">
+        <h3 className="mt-6 font-display text-lg font-semibold text-slate-100 leading-snug group-hover:text-white transition-colors">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-2.5 flex-1 text-sm leading-7 text-slate-400">{project.description}</p>
+        <p className="mt-3 flex-1 text-sm leading-[1.75] text-slate-400">{project.description}</p>
 
         {/* Tech tags */}
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           {project.tech.map((t) => (
             <span
               key={t}

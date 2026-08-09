@@ -14,8 +14,8 @@ const CARD_STYLE = {
 const SOCIAL_LINKS = [
   {
     label: 'Email',
-    value: 'harshit.srivastava544@gmail.com',
-    href: 'mailto:harshit.srivastava544@gmail.com',
+    value: 'harshitsri08@gmail.com',
+    href: 'mailto:harshitsri08@gmail.com',
     icon: Mail,
   },
   {

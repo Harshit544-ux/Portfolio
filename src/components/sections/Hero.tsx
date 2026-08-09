@@ -224,7 +224,7 @@ export function Hero() {
             {[
               { href: 'https://github.com/Harshit544-ux',                          label: 'GitHub',   abbr: 'GH' },
               { href: 'https://linkedin.com/in/harshit-srivastava-0b1694242',      label: 'LinkedIn', abbr: 'LI' },
-              { href: 'mailto:harshit.srivastava544@gmail.com',                    label: 'Email',    abbr: '@'  },
+              { href: 'mailto:harshitsri08@gmail.com',                             label: 'Email',    abbr: '@'  },
             ].map((s) => (
               <a
                 key={s.href}

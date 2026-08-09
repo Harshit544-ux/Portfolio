@@ -312,9 +312,9 @@ function App() {
             >
               <p className="text-sm uppercase tracking-[0.35em] text-cyan-200">Reach out</p>
               <div className="mt-6 space-y-4 text-slate-300">
-                <a href="mailto:harshit.srivastava544@gmail.com" className="flex items-center gap-3 transition hover:text-white">
+                <a href="mailto:harshitsri08@gmail.com" className="flex items-center gap-3 transition hover:text-white">
                   <Mail size={18} />
-                  harshit.srivastava544@gmail.com
+                  harshitsri08@gmail.com
                 </a>
                 <a href="https://linkedin.com/in/harshit-srivastava-0b1694242" target="_blank" rel="noreferrer" className="flex items-center gap-3 transition hover:text-white">
                   <Send size={18} />
