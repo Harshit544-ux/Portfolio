@@ -18,10 +18,11 @@ const fadeUp = {
 function ProfileCard() {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="w-full max-w-[360px] mx-auto lg:mx-0"
+      className="w-full mx-auto lg:mx-0"
+      style={{ maxWidth: '420px' }}
     >
       {/* Outer glow */}
       <div
@@ -30,8 +31,9 @@ function ProfileCard() {
         aria-hidden="true"
       />
       <div
-        className="relative rounded-[2rem] p-6"
+        className="relative rounded-[2rem]"
         style={{
+          padding: 'clamp(1.25rem, 2.5vw, 1.75rem)',
           background: 'rgba(255,255,255,0.045)',
           border: '1px solid rgba(255,255,255,0.1)',
           backdropFilter: 'blur(20px)',
@@ -40,7 +42,7 @@ function ProfileCard() {
         }}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between" style={{ gap: '0.75rem', marginBottom: '1.25rem' }}>
           <span
             className="font-mono text-[10px] tracking-widest uppercase"
             style={{ color: '#475569' }}
@@ -50,9 +52,11 @@ function ProfileCard() {
           <span
             className="flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
             style={{
+              padding: '0.35rem 0.75rem',
               border: '1px solid rgba(52,211,153,0.3)',
               background: 'rgba(52,211,153,0.08)',
               color: '#6ee7b7',
+              whiteSpace: 'nowrap',
             }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -61,10 +65,12 @@ function ProfileCard() {
         </div>
 
         {/* Avatar */}
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center" style={{ marginBottom: '1.25rem' }}>
           <div
-            className="h-36 w-36 rounded-full flex items-center justify-center text-4xl font-bold text-slate-200 animate-float"
+            className="rounded-full flex items-center justify-center text-4xl font-bold text-slate-200 animate-float"
             style={{
+              width: 'clamp(6.5rem, 10vw, 7.5rem)',
+              height: 'clamp(6.5rem, 10vw, 7.5rem)',
               background: 'linear-gradient(135deg, rgba(34,211,238,0.25), rgba(167,139,250,0.2))',
               border: '2px solid rgba(34,211,238,0.35)',
               boxShadow: '0 0 30px rgba(34,211,238,0.15)',
@@ -75,7 +81,7 @@ function ProfileCard() {
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2" style={{ gap: '0.75rem' }}>
           {[
             { label: 'Experience', value: '2+ Years' },
             { label: 'Focus',      value: 'AI + Mobile' },
@@ -84,11 +90,21 @@ function ProfileCard() {
           ].map((s) => (
             <div
               key={s.label}
-              className="rounded-xl p-3"
-              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+              className="rounded-xl"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                minWidth: 0,
+                minHeight: '4.5rem',
+                padding: '0.875rem',
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.07)',
+              }}
             >
-              <p className="text-[11px] text-slate-500">{s.label}</p>
-              <p className="mt-0.5 text-sm font-semibold text-slate-100">{s.value}</p>
+              <p className="text-[11px] text-slate-500" style={{ lineHeight: 1.2 }}>{s.label}</p>
+              <p className="text-sm font-semibold text-slate-100" style={{ lineHeight: 1.3, whiteSpace: 'nowrap' }}>{s.value}</p>
             </div>
           ))}
         </div>
@@ -255,7 +271,7 @@ export function Hero() {
             position: 'relative',
             flexShrink: 0,
             width: '100%',
-            maxWidth: '380px',
+            maxWidth: '420px',
             alignSelf: 'center',
           }}
         >
